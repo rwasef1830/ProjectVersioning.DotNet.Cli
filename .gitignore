@@ -19,3 +19,4 @@ artifacts/
 *.lock.json
 .build
 TestResult.xml
+_ReSharper.Caches/*
