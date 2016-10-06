@@ -1,4 +1,6 @@
-﻿namespace ProjectVersioning.DotNet.Cli
+﻿using System;
+
+namespace ProjectVersioning.DotNet.Cli
 {
     class WorkingCopyVersion
     {
@@ -13,7 +15,7 @@
             this.HasLocalChanges = hasLocalChanges;
         }
 
-        public System.Version ToVersion(int major, int minor)
+        public Version ToVersion(int major, int minor)
         {
             var calculatedBuildNumberHigh = (ushort)(this.RevisionNumber >> 16);
             var calculatedBuildNumberLow = (ushort)this.RevisionNumber;
@@ -23,7 +25,7 @@
                 calculatedBuildNumberHigh |= 32768;
             }
 
-            return new System.Version(major, minor, calculatedBuildNumberHigh, calculatedBuildNumberLow);
+            return new Version(major, minor, calculatedBuildNumberHigh, calculatedBuildNumberLow);
         }
 
         public string ToVersionString(int major, int minor, int patch, string releaseMarker)
