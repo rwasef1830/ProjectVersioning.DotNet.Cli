@@ -26,8 +26,8 @@ namespace ProjectVersioning.DotNet.Cli
             {
                 var p = new OptionSet
                 {
-                    { "s|scm=", "{SCM} must be one of [hg]", v => scm = v },
-                    { "t|type=", "{TYPE} must be one of [cs]", v => type = v },
+                    { "s|scm=", "{SCM} must be one of [hg, git]", v => scm = v },
+                    { "t|type=", "{TYPE} can be one of [cs] (if omitted, will output to stdout)", v => type = v },
                     {
                         "v|version=",
                         "version to use. Format: {n.n.n.n}, {n.n.n}, {n.n} or {n}",
@@ -35,7 +35,7 @@ namespace ProjectVersioning.DotNet.Cli
                     },
                     {
                         "m|marker=",
-                        "marker to embed (eg: -m=alpha will produce 1.2.3.4-alpha) (optional)",
+                        "marker (eg: -m=alpha will produce 1.2.3.4-alpha) (optional)",
                         v => marker = v
                     },
                     { "d|directory=", "work in {DIR} instead of current dir", v => directory = v },
@@ -59,11 +59,6 @@ namespace ProjectVersioning.DotNet.Cli
                     Console.WriteLine("Options:");
                     p.WriteOptionDescriptions(Console.Out);
                     return -98;
-                }
-
-                if (type == null)
-                {
-                    throw new OptionException("Missing value required for type.", nameof(type));
                 }
 
                 if (scm == null)
@@ -119,7 +114,7 @@ namespace ProjectVersioning.DotNet.Cli
                 }
 
                 var versionGetter = RevisionGetter.ForSourceControl(scm);
-                var versionInfoGenerator = VersionInfoGenerator.ForLanguage(type);
+                var versionInfoGenerator = VersionInfoGenerator.ForLanguage(type ?? string.Empty);
                 var wcVersion = versionGetter.GetVersion(directory);
 
                 var versionObj = wcVersion.ToVersion(major, minor);

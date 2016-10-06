@@ -8,6 +8,7 @@ namespace ProjectVersioning.DotNet.Cli
         static readonly IDictionary<string, IVersionInfoGenerator> s_InstancesByType
             = new Dictionary<string, IVersionInfoGenerator>
             {
+                [string.Empty] = new ConsoleVersionInfoGenerator(),
                 ["cs"] = new CsVersionInfoGenerator()
             };
 

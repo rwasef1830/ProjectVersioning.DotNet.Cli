@@ -7,7 +7,8 @@ namespace ProjectVersioning.DotNet.Cli
     {
         static readonly IDictionary<string, IRevisionGetter> s_InstancesByType = new Dictionary<string, IRevisionGetter>
         {
-            ["hg"] = new HgRevisionGetter()
+            ["hg"] = new HgRevisionGetter(),
+            ["git"] = new GitRevisionGetter()
         };
 
         public static IRevisionGetter ForSourceControl(string sourceControlType)
