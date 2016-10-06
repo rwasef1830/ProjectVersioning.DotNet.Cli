@@ -35,7 +35,7 @@ namespace ProjectVersioning.DotNet.Cli
                     },
                     {
                         "m|marker=",
-                        "marker to embed (eg: 1.2.3.4-{MARKER}) (optional)",
+                        "marker to embed (eg: -m=alpha will produce 1.2.3.4-alpha) (optional)",
                         v => marker = v
                     },
                     { "d|directory=", "work in {DIR} instead of current dir", v => directory = v },
