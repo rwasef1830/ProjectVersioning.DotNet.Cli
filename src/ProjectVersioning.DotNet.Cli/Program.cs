@@ -26,7 +26,6 @@ namespace ProjectVersioning.DotNet.Cli
             {
                 var p = new OptionSet
                 {
-                    { "d|directory=", "work in {DIR} instead of current dir", v => directory = v },
                     { "s|scm=", "{SCM} must be one of [hg]", v => scm = v },
                     { "t|type=", "{TYPE} must be one of [cs]", v => type = v },
                     {
@@ -39,6 +38,7 @@ namespace ProjectVersioning.DotNet.Cli
                         "marker to embed (eg: 1.2.3.4-{MARKER}) (optional)",
                         v => marker = v
                     },
+                    { "d|directory=", "work in {DIR} instead of current dir", v => directory = v },
                     { "h|?|help", "show this message and exit", v => showHelp = v != null }
                 };
 
