@@ -1,6 +1,6 @@
 {
     "version": "2.0.0-*",
-    "description": "Dot net CLI project version generator tool",
+    "description": ".NET Core CLI project version generator tool",
     "authors": [ "Raif Atef" ],
 
     "buildOptions": {
