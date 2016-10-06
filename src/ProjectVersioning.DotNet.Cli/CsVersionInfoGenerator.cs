@@ -2,11 +2,11 @@
 using System.IO;
 using System.Text;
 
-namespace DotNet.Tool.Version.Project
+namespace ProjectVersioning.DotNet.Cli
 {
     class CsVersionInfoGenerator : IVersionInfoGenerator
     {
-        public void Generate(string projectPath, System.Version version, string versionString)
+        public void Generate(string projectPath, Version version, string versionString)
         {
             if (projectPath == null) throw new ArgumentNullException(nameof(projectPath));
             if (version == null) throw new ArgumentNullException(nameof(version));

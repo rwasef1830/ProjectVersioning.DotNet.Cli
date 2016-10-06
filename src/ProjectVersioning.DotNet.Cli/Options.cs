@@ -141,7 +141,7 @@ using System.Linq;
 using NDesk.Options;
 #endif
 
-namespace DotNet.Tool.Version.Project
+namespace ProjectVersioning.DotNet.Cli
 {
 
     public class OptionValueCollection : IList, IList<string>
@@ -667,7 +667,7 @@ namespace DotNet.Tool.Version.Project
         protected override void RemoveItem(int index)
         {
             base.RemoveItem(index);
-            Option p = Items[index];
+            Option p = this.Items[index];
             // KeyedCollection.RemoveItem() handles the 0th item
             for (int i = 1; i < p.Names.Length; ++i)
             {
@@ -678,7 +678,7 @@ namespace DotNet.Tool.Version.Project
         protected override void SetItem(int index, Option item)
         {
             base.SetItem(index, item);
-            RemoveItem(index);
+            this.RemoveItem(index);
             this.AddImpl(item);
         }
 

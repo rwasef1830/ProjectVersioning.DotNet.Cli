@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace DotNet.Tool.Version.Project
+namespace ProjectVersioning.DotNet.Cli
 {
     class HgRevisionGetter : IRevisionGetter
     {

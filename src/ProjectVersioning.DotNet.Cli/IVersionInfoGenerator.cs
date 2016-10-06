@@ -1,4 +1,4 @@
-﻿namespace DotNet.Tool.Version.Project
+﻿namespace ProjectVersioning.DotNet.Cli
 {
     interface IVersionInfoGenerator
     {

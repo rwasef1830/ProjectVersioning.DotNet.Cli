@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DotNet.Tool.Version.Project
+namespace ProjectVersioning.DotNet.Cli
 {
     static class RevisionGetter
     {

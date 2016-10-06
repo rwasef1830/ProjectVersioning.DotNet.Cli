@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace DotNet.Tool.Version.Project
+namespace ProjectVersioning.DotNet.Cli
 {
     // ReSharper disable UnusedMember.Global
     public class Program

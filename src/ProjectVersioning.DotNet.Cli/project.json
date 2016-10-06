@@ -1,10 +1,11 @@
 {
-    "version": "1.1.0-*",
-    "description": "Dot net CLI project versioning tool",
-    "authors": [ "Interdesigns" ],
+    "version": "2.0.0-*",
+    "description": "Dot net CLI project version generator tool",
+    "authors": [ "Raif Atef" ],
 
     "buildOptions": {
-        "emitEntryPoint": true
+        "emitEntryPoint": true,
+        "outputName": "dotnet-project-version"
     },
 
     "dependencies": {

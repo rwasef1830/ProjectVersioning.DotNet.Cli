@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "dotnet-version-project", "src\dotnet-version-project\dotnet-version-project.xproj", "{78F34CB8-41D1-4DE6-87AB-62850C963F33}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ProjectVersioning.DotNet.Cli", "src\ProjectVersioning.DotNet.Cli\ProjectVersioning.DotNet.Cli.xproj", "{78F34CB8-41D1-4DE6-87AB-62850C963F33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
