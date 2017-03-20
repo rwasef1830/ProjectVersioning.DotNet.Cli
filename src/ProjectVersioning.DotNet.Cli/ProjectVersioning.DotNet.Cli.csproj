@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>.NET Core CLI project version generator tool</Description>
+    <VersionPrefix>2.0.0</VersionPrefix>
+    <Authors>Raif Atef</Authors>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <AssemblyName>dotnet-project-version</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>ProjectVersioning.DotNet.Cli</PackageId>
+    <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
+    <Version>2.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.TypeConverter" Version="4.1.0" />
+  </ItemGroup>
+
+</Project>

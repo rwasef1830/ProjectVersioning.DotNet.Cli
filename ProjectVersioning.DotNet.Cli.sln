@@ -1,20 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ProjectVersioning.DotNet.Cli", "src\ProjectVersioning.DotNet.Cli\ProjectVersioning.DotNet.Cli.xproj", "{78F34CB8-41D1-4DE6-87AB-62850C963F33}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ProjectVersioning.DotNet.Cli.Tests", "test\ProjectVersioning.DotNet.Cli.Tests\ProjectVersioning.DotNet.Cli.Tests.xproj", "{3AE71772-D38D-482A-B84A-EB9F319503E7}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F97BAB2C-22D7-4CAA-9DFC-2425876A982D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C05FADB7-69FE-4146-9FA2-F6E1667EA1F6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AE7989E9-F001-4463-9C62-57697FF2A4A7}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectVersioning.DotNet.Cli", "src\ProjectVersioning.DotNet.Cli\ProjectVersioning.DotNet.Cli.csproj", "{78F34CB8-41D1-4DE6-87AB-62850C963F33}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectVersioning.DotNet.Cli.Tests", "test\ProjectVersioning.DotNet.Cli.Tests\ProjectVersioning.DotNet.Cli.Tests.csproj", "{3AE71772-D38D-482A-B84A-EB9F319503E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
