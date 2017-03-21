@@ -10,6 +10,12 @@
     <PackageId>ProjectVersioning.DotNet.Cli</PackageId>
     <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
     <Version>2.1.0</Version>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl>https://github.com/rwasef1830/ProjectVersioning.DotNet.Cli</RepositoryUrl>
+    <PackageReleaseNotes />
+    <PackageTags>.net dotnet-cli versioning hg git</PackageTags>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
