@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 
 namespace ProjectVersioning.DotNet.Cli
 {
@@ -29,14 +28,23 @@ namespace ProjectVersioning.DotNet.Cli
 
             string versionInfoPath = Path.Combine(projectPath, "Properties", "VersionInfo.cs");
 
-            var versionInfoFileContents =
+            var newFileContents =
                 $@"using System.Reflection;
 
 [assembly: AssemblyVersion(""{version}"")]
 [assembly: AssemblyFileVersion(""{version}"")]
 [assembly: AssemblyInformationalVersion(""{versionString}"")]";
 
-            File.WriteAllText(versionInfoPath, versionInfoFileContents, Encoding.UTF8);
+            if (File.Exists(versionInfoPath))
+            {
+                var existingFileContents = File.ReadAllText(versionInfoPath);
+                if (string.Equals(newFileContents, existingFileContents, StringComparison.OrdinalIgnoreCase))
+                {
+                    return;
+                }
+            }
+
+            File.WriteAllText(versionInfoPath, newFileContents);
         }
     }
 }
