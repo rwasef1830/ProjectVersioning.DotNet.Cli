@@ -36,6 +36,10 @@ namespace ProjectVersioning.DotNet.Cli
             {
                 releaseMarker = "-" + releaseMarker;
             }
+            else
+            {
+                releaseMarker = null;
+            }
 
             return $"{major}.{minor}.{patch}.{this.RevisionNumber}{releaseMarker}+{this.RevisionId}{dirtyMarker}";
         }
