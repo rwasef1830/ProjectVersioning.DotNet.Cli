@@ -2,22 +2,20 @@
 
   <PropertyGroup>
     <Description>.NET Core CLI project version generator tool</Description>
-    <VersionPrefix>2.0.0</VersionPrefix>
     <Authors>Raif Atef</Authors>
     <TargetFramework>netcoreapp1.0</TargetFramework>
     <AssemblyName>dotnet-project-version</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>ProjectVersioning.DotNet.Cli</PackageId>
-    <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
-    <Version>2.1.2</Version>
+    <Version>2.1.3</Version>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/rwasef1830/ProjectVersioning.DotNet.Cli</PackageProjectUrl>
     <RepositoryUrl>https://github.com/rwasef1830/ProjectVersioning.DotNet.Cli</RepositoryUrl>
     <PackageReleaseNotes />
     <PackageTags>.net dotnet-cli versioning hg git</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <AssemblyVersion>2.1.2.0</AssemblyVersion>
-    <FileVersion>2.1.2.0</FileVersion>
+    <AssemblyVersion>2.1.3.0</AssemblyVersion>
+    <FileVersion>2.1.3.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
