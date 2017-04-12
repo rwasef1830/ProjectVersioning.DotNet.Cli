@@ -20,6 +20,17 @@ namespace ProjectVersioning.DotNet.Cli.Tests
         }
 
         [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase("  ")]
+        public void EmptyVersionSuffix(string suffix)
+        {
+            var wc = new WorkingCopyVersion(131071, "abcdefabcdef", false);
+            var informational = wc.ToVersionString(1, 2, 3, suffix);
+            informational.Should().Be("1.2.3.131071+abcdefabcdef");
+        }
+
+        [Test]
         public void DirtyWorkingCopy()
         {
             var wc = new WorkingCopyVersion(131071, "abcdefabcdef", true);

@@ -32,7 +32,7 @@ namespace ProjectVersioning.DotNet.Cli
         {
             var dirtyMarker = this.HasLocalChanges ? "-dirty" : string.Empty;
 
-            if (releaseMarker != null)
+            if (!string.IsNullOrWhiteSpace(releaseMarker))
             {
                 releaseMarker = "-" + releaseMarker;
             }

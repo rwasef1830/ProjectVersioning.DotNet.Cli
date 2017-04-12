@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <PackageId>ProjectVersioning.DotNet.Cli</PackageId>
     <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
-    <Version>2.1.0</Version>
+    <Version>2.1.1</Version>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/rwasef1830/ProjectVersioning.DotNet.Cli</RepositoryUrl>
@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ComponentModel.TypeConverter" Version="4.1.0" />
+    <PackageReference Include="System.ComponentModel.TypeConverter" Version="4.3.0" />
   </ItemGroup>
 
 </Project>
