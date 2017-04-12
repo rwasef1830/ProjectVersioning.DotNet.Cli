@@ -1,21 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputType>exe</OutputType>
-  </PropertyGroup>
-
   <PropertyGroup>
     <Description>Unit tests</Description>
     <Authors>Raif Atef</Authors>
     <TargetFramework>netcoreapp1.0</TargetFramework>
     <AssemblyName>ProjectVersioning.DotNet.Cli.Tests</AssemblyName>
     <PackageId>ProjectVersioning.DotNet.Cli.Tests</PackageId>
-    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-    <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
-    <ApplicationIcon />
-    <OutputTypeEx>exe</OutputTypeEx>
-    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="xunit" Version="2.3.0-beta1-build3642" />
     <PackageReference Include="FluentAssertions" Version="4.19.2" />
-    <PackageReference Include="NUnit" Version="3.6.1" />
-    <PackageReference Include="NUnitLite" Version="3.6.1" />
+    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.0-beta1-build3642" />
   </ItemGroup>
 
 </Project>

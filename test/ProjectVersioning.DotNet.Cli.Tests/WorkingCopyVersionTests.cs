@@ -1,13 +1,11 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace ProjectVersioning.DotNet.Cli.Tests
 {
-    [TestFixture]
-
-    class WorkingCopyVersionTests
+    public class WorkingCopyVersionTests
     {
-        [Test]
+        [Fact]
         public void CleanWorkingCopy()
         {
             var wc = new WorkingCopyVersion(131071, "abcdefabcdef", false);
@@ -19,10 +17,10 @@ namespace ProjectVersioning.DotNet.Cli.Tests
             informational.Should().Be("1.2.3.131071-alpha+abcdefabcdef");
         }
 
-        [Test]
-        [TestCase(null)]
-        [TestCase("")]
-        [TestCase("  ")]
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("  ")]
         public void EmptyVersionSuffix(string suffix)
         {
             var wc = new WorkingCopyVersion(131071, "abcdefabcdef", false);
@@ -30,7 +28,7 @@ namespace ProjectVersioning.DotNet.Cli.Tests
             informational.Should().Be("1.2.3.131071+abcdefabcdef");
         }
 
-        [Test]
+        [Fact]
         public void DirtyWorkingCopy()
         {
             var wc = new WorkingCopyVersion(131071, "abcdefabcdef", true);
