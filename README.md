@@ -4,20 +4,23 @@ This is a small dotnet CLI tool to help with embedding the revision number into 
 Note: This tool depends on the presence of hg / git binaries in the system path.
 
 ## Usage
-Add the nuget reference to the ```tools``` section of your ```project.json``` file:
-```
-"tools": {
-    "ProjectVersioning.DotNet.Cli": "2.0.0"
-}
-```
+1. Add the ```<DotNetCliToolReference>``` reference to your ```csproj``` file.
+2. Add a ```<Target>``` section to your csproj file (assuming hg project and generating a C# ```Properties\VersionInfo.cs``` file, taking the version from the csproj ```<VersionPrefix>``` and ```<VersionSuffix>``` property tags).
 
-Add a script to the ```precompile``` section of your ```project.json``` (assuming hg project and generating c# ```VersionInfo.cs``` file, taking the version from the project.json version field):
+Example snippet from a csproj file:
 ```
-"scripts": {
-    "precompile": [
-        "dotnet project-version -s=hg -t=cs -v=%project:Version% -m=modifier",
-    ]
-}
+<PropertyGroup>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionSuffix>final</VersionSuffix>
+</PropertyGroup>
+
+<ItemGroup>
+    <DotNetCliToolReference Include="ProjectVersioning.DotNet.Cli" Version="2.1.0" />
+</ItemGroup>
+  
+<Target Name="GenerateVersionInfo" BeforeTargets="Build">
+    <Exec Command="dotnet project-version -s=hg -t=cs -v=$(VersionPrefix) -m=$(VersionSuffix)" />
+</Target>
 ```
 
 Run ```dotnet project-version``` for detailed command arguments.
