@@ -16,8 +16,7 @@ namespace ProjectVersioning.DotNet.Cli
         {
             if (language == null) throw new ArgumentNullException(nameof(language));
 
-            IVersionInfoGenerator versionInfoGenerator;
-            if (!s_InstancesByType.TryGetValue(language, out versionInfoGenerator))
+            if (!s_InstancesByType.TryGetValue(language, out var versionInfoGenerator))
             {
                 throw new NotSupportedException($"Language '{language}' is not supported.");
             }
