@@ -44,6 +44,7 @@ namespace ProjectVersioning.DotNet.Cli
                 }
             }
 
+            Directory.CreateDirectory(Path.GetDirectoryName(versionInfoPath));
             File.WriteAllText(versionInfoPath, newFileContents);
         }
     }
