@@ -15,7 +15,7 @@ Example snippet from a csproj file:
 </PropertyGroup>
 
 <ItemGroup>
-    <DotNetCliToolReference Include="ProjectVersioning.DotNet.Cli" Version="2.1.0" />
+    <DotNetCliToolReference Include="ProjectVersioning.DotNet.Cli" Version="3.0.1" />
 </ItemGroup>
   
 <Target Name="GenerateVersionInfo" BeforeTargets="Build">
