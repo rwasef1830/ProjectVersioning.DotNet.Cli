@@ -18,7 +18,7 @@ Example snippet from a csproj file:
     <DotNetCliToolReference Include="ProjectVersioning.DotNet.Cli" Version="3.0.1" />
 </ItemGroup>
   
-<Target Name="GenerateVersionInfo" BeforeTargets="Build">
+<Target Name="GenerateVersionInfo" BeforeTargets="CoreCompile">
     <Exec Command="dotnet project-version -s=hg -t=cs -v=$(VersionPrefix) -m=$(VersionSuffix)" />
 </Target>
 ```
