@@ -4,26 +4,50 @@ This is a small dotnet CLI tool to help with embedding the revision number into 
 Note: This tool depends on the presence of hg / git binaries in the system path.
 
 ## Usage
-1. Add the ```<DotNetCliToolReference>``` reference to your ```csproj``` file.
-2. Add a ```<Target>``` section to your csproj file (assuming hg project and generating a C# ```Properties\VersionInfo.cs``` file, taking the version from the csproj ```<VersionPrefix>``` and ```<VersionSuffix>``` property tags).
+1. In your solution directory run ```dotnet tool install --local ProjectVersioning.DotNet.Cli```
+2. In your solution folder, create a new file: ```Version.xml``` (you can use any name).
+3. Use this snippet as a template:
 
-Example snippet from a csproj file:
+```xml
+<Project>
+	<!-- Project version properties (follows semantic versioning 2.0.0 rules) -->
+	<PropertyGroup>
+		<VersionPrefix>1.0.0</VersionPrefix>
+		<VersionSuffix>rc</VersionSuffix>
+		<Company>Raif Atef Wasef</Company>
+		<Copyright>Copyright © Raif Atef Wasef 2020</Copyright>
+		<Product>MyProduct</Product>
+	</PropertyGroup>
+
+	<!-- Suppress default attributes created by the compiler to prevent duplicate attribute errors -->
+	<PropertyGroup>
+		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+		<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+		<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+	</PropertyGroup>
+
+	<Target Name="GenerateVersionInfo" BeforeTargets="CoreCompile">
+		<Exec Command="dotnet tool restore" />
+		<Exec Command="dotnet tool run rw-project-version -s=git -t=cs -v=$(VersionPrefix) -m=$(VersionSuffix)" />
+
+		<ItemGroup>
+			<Compile Remove="Properties\VersionInfo.cs" />
+			<Compile Include="Properties\VersionInfo.cs" />
+		</ItemGroup>
+	</Target>
+</Project>
 ```
-<PropertyGroup>
-    <VersionPrefix>1.0.0</VersionPrefix>
-    <VersionSuffix>final</VersionSuffix>
-</PropertyGroup>
 
-<ItemGroup>
-    <DotNetCliToolReference Include="ProjectVersioning.DotNet.Cli" Version="3.0.1" />
-</ItemGroup>
-  
-<Target Name="GenerateVersionInfo" BeforeTargets="CoreCompile">
-    <Exec Command="dotnet project-version -s=hg -t=cs -v=$(VersionPrefix) -m=$(VersionSuffix)" />
-</Target>
+4. In each of your csproj files, add the following just before the closing ```</Project>``` tag:
+```xml
+	<!-- Adjust the path to Version.xml relative to the csproj file -->
+	<Import Project="..\Version.xml" />
 ```
 
-Run ```dotnet project-version``` for detailed command arguments.
+Run ```dotnet tool run rw-project-version``` for detailed command arguments.
 
 ## Version handling for C# projects
 The major and minor parts of the numeric version are taken from the passed version number. The build and revision fields will be the high 16-bit and low l6-bit parts of the local 32-bit repository revision number. In case the build is dirty, the highest bit of the high portion will be set.
