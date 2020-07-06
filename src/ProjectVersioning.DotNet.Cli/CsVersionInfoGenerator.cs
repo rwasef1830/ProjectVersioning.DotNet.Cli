@@ -33,9 +33,9 @@ namespace ProjectVersioning.DotNet.Cli
 
 using System.Reflection;
 
-[assembly: AssemblyVersion(AssemblyVersionConstants.AssemblyVersion)]
-[assembly: AssemblyFileVersion(AssemblyVersionConstants.AssemblyFileVersion)]
-[assembly: AssemblyInformationalVersion(AssemblyVersionConstants.AssemblyInformationalVersion)]
+[assembly: AssemblyVersion(AssemblyVersionConstants.Version)]
+[assembly: AssemblyFileVersion(AssemblyVersionConstants.FileVersion)]
+[assembly: AssemblyInformationalVersion(AssemblyVersionConstants.InformationalVersion)]
 
 class AssemblyVersionConstants
 {{

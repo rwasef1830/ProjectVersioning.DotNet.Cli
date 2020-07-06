@@ -7,15 +7,15 @@
     <AssemblyName>dotnet-project-version</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>ProjectVersioning.DotNet.Cli</PackageId>
-    <Version>4.1.0</Version>
+    <Version>4.2.0</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/rwasef1830/ProjectVersioning.DotNet.Cli</PackageProjectUrl>
     <RepositoryUrl>https://github.com/rwasef1830/ProjectVersioning.DotNet.Cli</RepositoryUrl>
     <PackageReleaseNotes />
     <PackageTags>.net dotnet-cli versioning hg git</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <AssemblyVersion>4.1.0.0</AssemblyVersion>
-    <FileVersion>4.1.0.0</FileVersion>
+    <AssemblyVersion>4.2.0.0</AssemblyVersion>
+    <FileVersion>4.2.0.0</FileVersion>
   </PropertyGroup>
 
 </Project>
