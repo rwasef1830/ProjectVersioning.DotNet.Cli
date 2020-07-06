@@ -29,11 +29,21 @@ namespace ProjectVersioning.DotNet.Cli
             string versionInfoPath = Path.Combine(projectPath, "Properties", "VersionInfo.cs");
 
             var newFileContents =
-                $@"using System.Reflection;
+                $@"// ReSharper disable All
 
-[assembly: AssemblyVersion(""{version}"")]
-[assembly: AssemblyFileVersion(""{version}"")]
-[assembly: AssemblyInformationalVersion(""{versionString}"")]";
+using System.Reflection;
+
+[assembly: AssemblyVersion(AssemblyVersionConstants.AssemblyVersion)]
+[assembly: AssemblyFileVersion(AssemblyVersionConstants.AssemblyFileVersion)]
+[assembly: AssemblyInformationalVersion(AssemblyVersionConstants.AssemblyInformationalVersion)]
+
+class AssemblyVersionConstants
+{{
+        public const string Version = ""{version}"";
+        public const string FileVersion = ""{version}"";
+        public const string InformationalVersion = ""{versionString}"";
+}}
+";
 
             if (File.Exists(versionInfoPath))
             {
