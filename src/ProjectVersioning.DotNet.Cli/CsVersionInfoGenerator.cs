@@ -30,6 +30,7 @@ namespace ProjectVersioning.DotNet.Cli
 
             var newFileContents =
                 $@"// ReSharper disable All
+#pragma warning disable 0436
 
 using System.Reflection;
 
@@ -39,9 +40,9 @@ using System.Reflection;
 
 class AssemblyVersionConstants
 {{
-        public const string Version = ""{version}"";
-        public const string FileVersion = ""{version}"";
-        public const string InformationalVersion = ""{versionString}"";
+    public const string Version = ""{version}"";
+    public const string FileVersion = ""{version}"";
+    public const string InformationalVersion = ""{versionString}"";
 }}
 ";
 
