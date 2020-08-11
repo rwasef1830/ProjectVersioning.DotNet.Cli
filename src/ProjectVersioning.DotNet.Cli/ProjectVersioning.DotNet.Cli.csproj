@@ -3,19 +3,19 @@
   <PropertyGroup>
     <Description>.NET Core CLI project version generator tool</Description>
     <Authors>Raif Atef</Authors>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFrameworks>netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
     <AssemblyName>dotnet-project-version</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>ProjectVersioning.DotNet.Cli</PackageId>
-    <Version>4.2.2</Version>
+    <Version>4.3.1</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/rwasef1830/ProjectVersioning.DotNet.Cli</PackageProjectUrl>
     <RepositoryUrl>https://github.com/rwasef1830/ProjectVersioning.DotNet.Cli</RepositoryUrl>
     <PackageReleaseNotes />
     <PackageTags>.net dotnet-cli versioning hg git</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <AssemblyVersion>4.2.2.0</AssemblyVersion>
-    <FileVersion>4.2.2.0</FileVersion>
+    <AssemblyVersion>4.3.1.0</AssemblyVersion>
+    <FileVersion>4.3.1.0</FileVersion>
   </PropertyGroup>
 
 </Project>
