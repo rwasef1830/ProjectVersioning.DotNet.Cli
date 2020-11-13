@@ -21,3 +21,4 @@ artifacts/
 TestResult.xml
 _ReSharper.Caches/*
 /src/ProjectVersioning.DotNet.Cli/Properties/PublishProfiles
+.idea
