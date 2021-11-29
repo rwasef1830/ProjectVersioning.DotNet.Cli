@@ -1,0 +1,27 @@
+name: publish to nuget
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+jobs:
+  publish:
+    name: build, pack & publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
+      - uses: actions/checkout@v2
+      - name: publish on version change
+        id: publish_nuget
+        uses: waldosax/publish-nuget@95f8e50d8df92e9bafae7188c5345a3534774d94
+        with:
+          PROJECT_FILE_PATH: src/ProjectVersioning.DotNet.Cli/ProjectVersioning.DotNet.Cli.csproj
+          PACKAGE_NAME: ProjectVersioning.DotNet.Cli
+          VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
+          TAG_COMMIT: true
+          TAG_FORMAT: '*'
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+          NUGET_SOURCE: https://api.nuget.org
+          INCLUDE_SYMBOLS: true
