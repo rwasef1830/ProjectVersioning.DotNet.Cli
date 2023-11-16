@@ -58,7 +58,11 @@ class AssemblyVersionConstants
                 }
             }
 
-            Directory.CreateDirectory(Path.GetDirectoryName(versionInfoPath));
+            if (Path.GetDirectoryName(versionInfoPath) is { } directoryName)
+            {
+                Directory.CreateDirectory(directoryName);
+            }
+
             File.WriteAllText(versionInfoPath, newFileContents);
         }
     }
