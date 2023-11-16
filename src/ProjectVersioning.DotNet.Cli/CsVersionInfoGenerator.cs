@@ -38,7 +38,7 @@ using System.Reflection;
 [assembly: AssemblyFileVersion(AssemblyVersionConstants.FileVersion)]
 [assembly: AssemblyInformationalVersion(AssemblyVersionConstants.InformationalVersion)]
 
-#ifdef NET7_0
+#if NET7_0
 file
 #endif
 class AssemblyVersionConstants
