@@ -38,6 +38,9 @@ using System.Reflection;
 [assembly: AssemblyFileVersion(AssemblyVersionConstants.FileVersion)]
 [assembly: AssemblyInformationalVersion(AssemblyVersionConstants.InformationalVersion)]
 
+#ifdef NET7_0
+file
+#endif
 class AssemblyVersionConstants
 {{
     public const string Version = ""{version}"";
