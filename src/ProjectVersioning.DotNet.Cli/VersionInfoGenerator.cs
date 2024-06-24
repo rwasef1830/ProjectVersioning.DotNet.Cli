@@ -14,7 +14,10 @@ namespace ProjectVersioning.DotNet.Cli
 
         public static IVersionInfoGenerator ForLanguage(string language)
         {
-            if (language == null) throw new ArgumentNullException(nameof(language));
+            if (language == null)
+            {
+                throw new ArgumentNullException(nameof(language));
+            }
 
             if (!s_InstancesByType.TryGetValue(language, out var versionInfoGenerator))
             {

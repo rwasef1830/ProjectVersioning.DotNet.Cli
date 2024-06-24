@@ -296,16 +296,24 @@ namespace ProjectVersioning.DotNet.Cli
         private void AssertValid(int index)
         {
             if (this.c.Option == null)
+            {
                 throw new InvalidOperationException("OptionContext.Option is null.");
+            }
+
             if (index >= this.c.Option.MaxValueCount)
+            {
                 throw new ArgumentOutOfRangeException("index");
+            }
+
             if (this.c.Option.OptionValueType == OptionValueType.Required &&
                 index >= this.values.Count)
+            {
                 throw new OptionException(
                     string.Format(
                         this.c.OptionSet.MessageLocalizer("Missing required value for option '{0}'."),
                         this.c.OptionName),
                     this.c.OptionName);
+            }
         }
 
         public string this[int index]
@@ -400,11 +408,19 @@ namespace ProjectVersioning.DotNet.Cli
         protected Option(string prototype, string description, int maxValueCount)
         {
             if (prototype == null)
+            {
                 throw new ArgumentNullException("prototype");
+            }
+
             if (prototype.Length == 0)
+            {
                 throw new ArgumentException("Cannot be the empty string.", "prototype");
+            }
+
             if (maxValueCount < 0)
+            {
                 throw new ArgumentOutOfRangeException("maxValueCount");
+            }
 
             this.prototype = prototype;
             this.names = prototype.Split('|');
@@ -413,20 +429,28 @@ namespace ProjectVersioning.DotNet.Cli
             this.type = this.ParsePrototype();
 
             if (this.count == 0 && this.type != OptionValueType.None)
+            {
                 throw new ArgumentException(
                     "Cannot provide maxValueCount of 0 for OptionValueType.Required or " +
                     "OptionValueType.Optional.",
                     "maxValueCount");
+            }
+
             if (this.type == OptionValueType.None && maxValueCount > 1)
+            {
                 throw new ArgumentException(
                     string.Format("Cannot provide maxValueCount of {0} for OptionValueType.None.", maxValueCount),
                     "maxValueCount");
+            }
+
             if (Array.IndexOf(this.names, "<>") >= 0 &&
                 ((this.names.Length == 1 && this.type != OptionValueType.None) ||
                  (this.names.Length > 1 && this.MaxValueCount > 1)))
+            {
                 throw new ArgumentException(
                     "The default option handler '<>' cannot require values.",
                     "prototype");
+            }
         }
 
         public string Prototype
@@ -457,7 +481,10 @@ namespace ProjectVersioning.DotNet.Cli
         public string[] GetValueSeparators()
         {
             if (this.separators == null)
+            {
                 return new string[0];
+            }
+
             return (string[])this.separators.Clone();
         }
 
@@ -468,7 +495,9 @@ namespace ProjectVersioning.DotNet.Cli
             try
             {
                 if (value != null)
+                {
                     t = (T)conv.ConvertFromString(value);
+                }
             }
             catch (Exception e)
             {
@@ -504,36 +533,57 @@ namespace ProjectVersioning.DotNet.Cli
             {
                 string name = this.names[i];
                 if (name.Length == 0)
+                {
                     throw new ArgumentException("Empty option names are not supported.", "prototype");
+                }
 
                 int end = name.IndexOfAny(NameTerminator);
                 if (end == -1)
+                {
                     continue;
+                }
+
                 this.names[i] = name.Substring(0, end);
                 if (type == '\0' || type == name[end])
+                {
                     type = name[end];
+                }
                 else
+                {
                     throw new ArgumentException(
                         string.Format("Conflicting option types: '{0}' vs. '{1}'.", type, name[end]),
                         "prototype");
+                }
+
                 AddSeparators(name, end, seps);
             }
 
             if (type == '\0')
+            {
                 return OptionValueType.None;
+            }
 
             if (this.count <= 1 && seps.Count != 0)
+            {
                 throw new ArgumentException(
                     string.Format("Cannot provide key/value separators for Options taking {0} value(s).", this.count),
                     "prototype");
+            }
+
             if (this.count > 1)
             {
                 if (seps.Count == 0)
+                {
                     this.separators = new string[] { ":", "=" };
+                }
                 else if (seps.Count == 1 && seps[0].Length == 0)
+                {
                     this.separators = null;
+                }
                 else
+                {
                     this.separators = seps.ToArray();
+                }
             }
 
             return type == '=' ? OptionValueType.Required : OptionValueType.Optional;
@@ -548,29 +598,40 @@ namespace ProjectVersioning.DotNet.Cli
                 {
                     case '{':
                         if (start != -1)
+                        {
                             throw new ArgumentException(
                                 string.Format("Ill-formed name/value separator found in \"{0}\".", name),
                                 "prototype");
+                        }
+
                         start = i + 1;
                         break;
                     case '}':
                         if (start == -1)
+                        {
                             throw new ArgumentException(
                                 string.Format("Ill-formed name/value separator found in \"{0}\".", name),
                                 "prototype");
+                        }
+
                         seps.Add(name.Substring(start, i - start));
                         start = -1;
                         break;
                     default:
                         if (start == -1)
+                        {
                             seps.Add(name[i].ToString());
+                        }
+
                         break;
                 }
             }
             if (start != -1)
+            {
                 throw new ArgumentException(
                     string.Format("Ill-formed name/value separator found in \"{0}\".", name),
                     "prototype");
+            }
         }
 
         public void Invoke(OptionContext c)
@@ -635,9 +696,15 @@ namespace ProjectVersioning.DotNet.Cli
         protected override string GetKeyForItem(Option item)
         {
             if (item == null)
+            {
                 throw new ArgumentNullException("option");
+            }
+
             if (item.Names != null && item.Names.Length > 0)
+            {
                 return item.Names[0];
+            }
+
             // This should never happen, as it's invalid for Option to be
             // constructed w/o any names.
             throw new InvalidOperationException("Option has no names!");
@@ -647,7 +714,10 @@ namespace ProjectVersioning.DotNet.Cli
         protected Option GetOptionForName(string option)
         {
             if (option == null)
+            {
                 throw new ArgumentNullException("option");
+            }
+
             try
             {
                 return base[option];
@@ -685,7 +755,10 @@ namespace ProjectVersioning.DotNet.Cli
         private void AddImpl(Option option)
         {
             if (option == null)
+            {
                 throw new ArgumentNullException("option");
+            }
+
             List<string> added = new List<string>(option.Names.Length);
             try
             {
@@ -718,7 +791,10 @@ namespace ProjectVersioning.DotNet.Cli
                 : base(prototype, description, count)
             {
                 if (action == null)
+                {
                     throw new ArgumentNullException("action");
+                }
+
                 this.action = action;
             }
 
@@ -736,7 +812,10 @@ namespace ProjectVersioning.DotNet.Cli
         public OptionSet Add(string prototype, string description, Action<string> action)
         {
             if (action == null)
+            {
                 throw new ArgumentNullException("action");
+            }
+
             Option p = new ActionOption(
                 prototype,
                 description,
@@ -754,7 +833,10 @@ namespace ProjectVersioning.DotNet.Cli
         public OptionSet Add(string prototype, string description, OptionAction<string, string> action)
         {
             if (action == null)
+            {
                 throw new ArgumentNullException("action");
+            }
+
             Option p = new ActionOption(
                 prototype,
                 description,
@@ -772,7 +854,10 @@ namespace ProjectVersioning.DotNet.Cli
                 : base(prototype, description, 1)
             {
                 if (action == null)
+                {
                     throw new ArgumentNullException("action");
+                }
+
                 this.action = action;
             }
 
@@ -790,7 +875,10 @@ namespace ProjectVersioning.DotNet.Cli
                 : base(prototype, description, 2)
             {
                 if (action == null)
+                {
                     throw new ArgumentNullException("action");
+                }
+
                 this.action = action;
             }
 
@@ -877,10 +965,15 @@ namespace ProjectVersioning.DotNet.Cli
                     continue;
                 }
                 if (!this.Parse(argument, c))
+                {
                     Unprocessed(unprocessed, def, c, argument);
+                }
             }
             if (c.Option != null)
+            {
                 c.Option.Invoke(c);
+            }
+
             return unprocessed;
         }
 #endif
@@ -909,7 +1002,9 @@ namespace ProjectVersioning.DotNet.Cli
             out string value)
         {
             if (argument == null)
+            {
                 throw new ArgumentNullException("argument");
+            }
 
             flag = name = sep = value = null;
             Match m = this.ValueOption.Match(argument);
@@ -937,7 +1032,9 @@ namespace ProjectVersioning.DotNet.Cli
 
             string f, n, s, v;
             if (!this.GetOptionParts(argument, out f, out n, out s, out v))
+            {
                 return false;
+            }
 
             Option p;
             if (this.Contains(n))
@@ -960,10 +1057,15 @@ namespace ProjectVersioning.DotNet.Cli
             }
             // no match; is it a bool option?
             if (this.ParseBool(argument, n, c))
+            {
                 return true;
+            }
+
             // is it a bundled option?
             if (this.ParseBundledValue(f, string.Concat(n + s + v), c))
+            {
                 return true;
+            }
 
             return false;
         }
@@ -971,15 +1073,20 @@ namespace ProjectVersioning.DotNet.Cli
         private void ParseValue(string option, OptionContext c)
         {
             if (option != null)
+            {
                 foreach (string o in c.Option.ValueSeparators != null
-                    ? option.Split(c.Option.ValueSeparators, StringSplitOptions.None)
-                    : new string[] { option })
+                             ? option.Split(c.Option.ValueSeparators, StringSplitOptions.None)
+                             : new string[] { option })
                 {
                     c.OptionValues.Add(o);
                 }
+            }
+
             if (c.OptionValues.Count == c.Option.MaxValueCount ||
                 c.Option.OptionValueType == OptionValueType.Optional)
+            {
                 c.Option.Invoke(c);
+            }
             else if (c.OptionValues.Count > c.Option.MaxValueCount)
             {
                 throw new OptionException(
@@ -1013,7 +1120,10 @@ namespace ProjectVersioning.DotNet.Cli
         private bool ParseBundledValue(string f, string n, OptionContext c)
         {
             if (f != "-")
+            {
                 return false;
+            }
+
             for (int i = 0; i < n.Length; ++i)
             {
                 Option p;
@@ -1022,7 +1132,10 @@ namespace ProjectVersioning.DotNet.Cli
                 if (!this.Contains(rn))
                 {
                     if (i == 0)
+                    {
                         return false;
+                    }
+
                     throw new OptionException(
                         string.Format(
                             this.localizer(
@@ -1068,10 +1181,14 @@ namespace ProjectVersioning.DotNet.Cli
             {
                 int written = 0;
                 if (!this.WriteOptionPrototype(o, p, ref written))
+                {
                     continue;
+                }
 
                 if (written < OptionWidth)
+                {
                     o.Write(new string(' ', OptionWidth - written));
+                }
                 else
                 {
                     o.WriteLine();
@@ -1095,7 +1212,9 @@ namespace ProjectVersioning.DotNet.Cli
 
             int i = GetNextOptionIndex(names, 0);
             if (i == names.Length)
+            {
                 return false;
+            }
 
             if (names[i].Length == 1)
             {
@@ -1158,12 +1277,20 @@ namespace ProjectVersioning.DotNet.Cli
         private static string GetArgumentName(int index, int maxIndex, string description)
         {
             if (description == null)
+            {
                 return maxIndex == 1 ? "VALUE" : "VALUE" + (index + 1);
+            }
+
             string[] nameStart;
             if (maxIndex == 1)
+            {
                 nameStart = new string[] { "{0:", "{" };
+            }
             else
+            {
                 nameStart = new string[] { "{" + index + ":" };
+            }
+
             for (int i = 0; i < nameStart.Length; ++i)
             {
                 int start, j = 0;
@@ -1172,10 +1299,16 @@ namespace ProjectVersioning.DotNet.Cli
                     start = description.IndexOf(nameStart[i], j);
                 } while (start >= 0 && j != 0 ? description[j++ - 1] == '{' : false);
                 if (start == -1)
+                {
                     continue;
+                }
+
                 int end = description.IndexOf("}", start);
                 if (end == -1)
+                {
                     continue;
+                }
+
                 return description.Substring(start + nameStart[i].Length, end - start - nameStart[i].Length);
             }
             return maxIndex == 1 ? "VALUE" : "VALUE" + (index + 1);
@@ -1184,7 +1317,10 @@ namespace ProjectVersioning.DotNet.Cli
         private static string GetDescription(string description)
         {
             if (description == null)
+            {
                 return string.Empty;
+            }
+
             StringBuilder sb = new StringBuilder(description.Length);
             int start = -1;
             for (int i = 0; i < description.Length; ++i)
@@ -1198,13 +1334,19 @@ namespace ProjectVersioning.DotNet.Cli
                             start = -1;
                         }
                         else if (start < 0)
+                        {
                             start = i + 1;
+                        }
+
                         break;
                     case '}':
                         if (start < 0)
                         {
                             if ((i + 1) == description.Length || description[i + 1] != '}')
+                            {
                                 throw new InvalidOperationException("Invalid option description: " + description);
+                            }
+
                             ++i;
                             sb.Append("}");
                         }
@@ -1216,12 +1358,18 @@ namespace ProjectVersioning.DotNet.Cli
                         break;
                     case ':':
                         if (start < 0)
+                        {
                             goto default;
+                        }
+
                         start = i + 1;
                         break;
                     default:
                         if (start < 0)
+                        {
                             sb.Append(description[i]);
+                        }
+
                         break;
                 }
             }
@@ -1246,7 +1394,9 @@ namespace ProjectVersioning.DotNet.Cli
                 {
                     char c = description[end];
                     if (c == '-' || (char.IsWhiteSpace(c) && c != '\n'))
+                    {
                         ++end;
+                    }
                     else if (c != '\n')
                     {
                         cont = true;
@@ -1260,7 +1410,9 @@ namespace ProjectVersioning.DotNet.Cli
                 }
                 start = end;
                 if (start < description.Length && description[start] == '\n')
+                {
                     ++start;
+                }
             } while (end < description.Length);
             return lines;
         }
@@ -1287,7 +1439,10 @@ namespace ProjectVersioning.DotNet.Cli
                 }
             }
             if (sep == -1 || end == description.Length)
+            {
                 return end;
+            }
+
             return sep;
         }
     }

@@ -7,9 +7,20 @@ namespace ProjectVersioning.DotNet.Cli
     {
         public void Generate(string projectPath, Version version, string versionString)
         {
-            if (projectPath == null) throw new ArgumentNullException(nameof(projectPath));
-            if (version == null) throw new ArgumentNullException(nameof(version));
-            if (versionString == null) throw new ArgumentNullException(nameof(versionString));
+            if (projectPath == null)
+            {
+                throw new ArgumentNullException(nameof(projectPath));
+            }
+
+            if (version == null)
+            {
+                throw new ArgumentNullException(nameof(version));
+            }
+
+            if (versionString == null)
+            {
+                throw new ArgumentNullException(nameof(versionString));
+            }
 
             if (!File.Exists(projectPath) && !Directory.Exists(projectPath))
             {

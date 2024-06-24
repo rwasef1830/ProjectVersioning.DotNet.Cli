@@ -13,7 +13,10 @@ namespace ProjectVersioning.DotNet.Cli
 
         public static IRevisionGetter ForSourceControl(string sourceControlType)
         {
-            if (sourceControlType == null) throw new ArgumentNullException(nameof(sourceControlType));
+            if (sourceControlType == null)
+            {
+                throw new ArgumentNullException(nameof(sourceControlType));
+            }
 
             IRevisionGetter revGetter;
             if (!s_InstancesByType.TryGetValue(sourceControlType, out revGetter))
