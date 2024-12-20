@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Description>.NET Core CLI project version generator tool</Description>
     <Authors>Raif Atef</Authors>
-    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks>
     <AssemblyName>dotnet-project-version</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>ProjectVersioning.DotNet.Cli</PackageId>
@@ -13,9 +13,9 @@
     <PackageReleaseNotes />
     <PackageTags>.net dotnet-cli versioning hg git</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <AssemblyVersion>6.1.0.0</AssemblyVersion>
-    <FileVersion>6.1.0.0</FileVersion>
-    <Version>6.1.0.0</Version>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
+    <FileVersion>7.0.0.0</FileVersion>
+    <Version>7.0.0.0</Version>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>rw-project-version</ToolCommandName>
   </PropertyGroup>
